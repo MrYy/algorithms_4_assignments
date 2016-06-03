@@ -6,6 +6,8 @@ package assignment.firstweek;
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
+import java.io.File;
+
 public class Percolation {
     //init N-by-N grid,all sites blocked
     boolean isOpen[];
@@ -16,6 +18,7 @@ public class Percolation {
         //use index 1->N;
         if(N<=0) throw new IllegalArgumentException();
         isOpen = new boolean[N*N];
+        topOpen = new boolean[N];
         uf = new WeightedQuickUnionUF(N*N);
         this.N = N;
     }
@@ -26,13 +29,13 @@ public class Percolation {
         i--;j--;
         int x,y;
         x=i; y = j - 1;
-        if(isOpen[calculate(x,y)]) uf.union(calculate(i,j),calculate(x,y));
+        if(y>=0&&isOpen[calculate(x,y)]) uf.union(calculate(i,j),calculate(x,y));
         x= i ; y = j + 1;
-        if(isOpen[calculate(x,y)]) uf.union(calculate(i,j),calculate(x,y));
+        if(y<=(N-1)&&isOpen[calculate(x,y)]) uf.union(calculate(i,j),calculate(x,y));
         x = i -1 ; y = j;
-        if(isOpen[calculate(x,y)]) uf.union(calculate(i,j),calculate(x,y));
+        if(x>=0&&isOpen[calculate(x,y)]) uf.union(calculate(i,j),calculate(x,y));
         x = i+1;y = j;
-        if(isOpen[calculate(x,y)]) uf.union(calculate(i,j),calculate(x,y));
+        if(x<=(N-1)&&isOpen[calculate(x,y)]) uf.union(calculate(i,j),calculate(x,y));
         isOpen[calculate(i,j)] = true;
         if(i==0) topOpen[j] = true;
     }
@@ -42,19 +45,22 @@ public class Percolation {
     }
     //is  a (i,j) site open?
     public boolean isOpen(int i, int j) {
-        i--; j--;
+        i--;
+        j--;
         return isOpen[i * N + j];
     }
 
     //is (i,j) site full?
     public boolean isFull(int i, int j) {
         i--; j--;
-        if(!isOpen(i,j)) return false;
+        if(!isOpen(++i,++j)) return false;
+        i--; j--;
         if(i==0)
             if(topOpen[j])
                 return true;
         for (int index=0;index<N;index++) {
             if(topOpen[index]) return uf.connected(index, calculate(i, j));
+//            System.out.print(index+" ");
         }
         return false;
     }
@@ -69,7 +75,9 @@ public class Percolation {
 
 
     public static void main(String[] args) {
-
+//        System.out.println("percolation");
+//        File file = new File("input10.txt");
+//        System.out.print(file.isFile());
     }
 
 }
