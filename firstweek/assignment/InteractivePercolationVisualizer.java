@@ -1,4 +1,4 @@
-package assignment.firstweek; /******************************************************************************
+package firstweek.assignment; /******************************************************************************
  *  Compilation:  javac InteractivePercolationVisualizer.java
  *  Execution:    java InteractivePercolationVisualizer N
  *  Dependencies: PercolationVisualizer.java Percolation.java

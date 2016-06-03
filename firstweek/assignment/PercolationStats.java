@@ -1,11 +1,11 @@
-package assignment.firstweek;
+package firstweek.assignment;
 
 /**
  * Created by ge on 2016/6/2.
  */
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
-import edu.princeton.cs.algs4.Stopwatch;
+
 public class PercolationStats {
     //perform T times independent experiments
     //N-by-N grid

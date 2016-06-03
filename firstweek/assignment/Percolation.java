@@ -1,4 +1,4 @@
-package assignment.firstweek;
+package firstweek.assignment;
 
 /**
  * Created by ge on 2016/6/2.
@@ -10,8 +10,8 @@ import java.io.File;
 
 public class Percolation {
     //init N-by-N grid,all sites blocked
-    boolean isOpen[];
-    boolean topOpen[];
+    private boolean isOpen[];
+    private boolean topOpen[];
     private int N;
     private WeightedQuickUnionUF uf;
     public Percolation(int N) {
